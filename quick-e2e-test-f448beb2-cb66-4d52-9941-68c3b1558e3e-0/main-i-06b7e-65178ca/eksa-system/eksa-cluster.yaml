@@ -2,7 +2,6 @@ apiVersion: anywhere.eks.amazonaws.com/v1alpha1
 kind: Cluster
 metadata:
   annotations:
-    anywhere.eks.amazonaws.com/managed-by-cli: "true"
     anywhere.eks.amazonaws.com/management-components-version: v0.20.0-dev+build.211
   name: main-i-06b7e-65178ca
   namespace: default
@@ -37,7 +36,7 @@ spec:
   gitOpsRef:
     kind: FluxConfig
     name: eksa-test
-  kubernetesVersion: "1.25"
+  kubernetesVersion: "1.26"
   machineHealthCheck:
     maxUnhealthy: 100%
     nodeStartupTimeout: 10m0s
@@ -76,6 +75,25 @@ apiVersion: anywhere.eks.amazonaws.com/v1alpha1
 kind: CloudStackMachineConfig
 metadata:
   annotations:
+    anywhere.eks.amazonaws.com/etcd: "true"
+  name: main-i-06b7e-65178ca-etcd
+  namespace: default
+spec:
+  computeOffering:
+    name: Large Instance
+  template:
+    name: kubernetes-1-26-eks-31-redhat-9
+  users:
+  - name: capc
+    sshAuthorizedKeys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBf1/Emrhv/E5r1us9kaW+I0rvdDWIWCgVSw+OGQbQ4ofvQbTp+AVswOqGDccAaZ2yJhiL/r5nRz5ioCqMWGWsoGAwxlCNmAU3/SeQOloNNQwQ872wexJDWX13wc4YvxHdxMQV1zkAXpHe2tz5r4RFG+kB7P87RawLp2f+qIRUyviW8YGk8o7aTfhOG0NVjeqFH+HMxCY/J6ubaxlSiiJGxKDfOuRAoZMzkV98rqJqxwUjmt4O/O9nHklbh7V6ivBKvJU4mdiu/Yh0wkOG0FrIO14UF4FyfHh45y8omwrdSfmxlAaqf6G7wo/1SvdWoTVVfBeHWy04Tx18Pb9ltfenUPW17UzYK1arx9xagV6VdZIMjFngSdqlkqjKBMJT99n1lh9L8rdQlUAxSafzFmH8dwAD2Fa9R1zkWYnLZYCCabbjWsXNae6+arx5v2VMB4hrFZVxgh8O/vmPGE2IAsx9SEx9mk8sE+opbWDH3Z5KLoFi4laQz7chCPxg+DmDIqcTTUAgzq6mAFdBZK2gBoBed97kFxD/1Y0YVEmB6RCHBVtQcoJNtmNN5QbIGmnU4SPxNmanmAi1o0kUd73wlvMaa8TfeWrWvMkTNIqg6dwtmhOtRwKyy4DhvZL51iFwdZRygDXuhoZKr7e9MGN1CPht30v/WAP8UsagoO73rFb6HQ==
+      eksae2e@email.com
+
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: CloudStackMachineConfig
+metadata:
+  annotations:
     anywhere.eks.amazonaws.com/control-plane: "true"
   name: main-i-06b7e-65178ca-cp
   namespace: default
@@ -83,7 +101,7 @@ spec:
   computeOffering:
     name: Large Instance
   template:
-    name: kubernetes-1-25-eks-35-redhat-9
+    name: kubernetes-1-26-eks-31-redhat-9
   users:
   - name: capc
     sshAuthorizedKeys:
@@ -100,26 +118,7 @@ spec:
   computeOffering:
     name: Large Instance
   template:
-    name: kubernetes-1-25-eks-35-redhat-9
-  users:
-  - name: capc
-    sshAuthorizedKeys:
-    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBf1/Emrhv/E5r1us9kaW+I0rvdDWIWCgVSw+OGQbQ4ofvQbTp+AVswOqGDccAaZ2yJhiL/r5nRz5ioCqMWGWsoGAwxlCNmAU3/SeQOloNNQwQ872wexJDWX13wc4YvxHdxMQV1zkAXpHe2tz5r4RFG+kB7P87RawLp2f+qIRUyviW8YGk8o7aTfhOG0NVjeqFH+HMxCY/J6ubaxlSiiJGxKDfOuRAoZMzkV98rqJqxwUjmt4O/O9nHklbh7V6ivBKvJU4mdiu/Yh0wkOG0FrIO14UF4FyfHh45y8omwrdSfmxlAaqf6G7wo/1SvdWoTVVfBeHWy04Tx18Pb9ltfenUPW17UzYK1arx9xagV6VdZIMjFngSdqlkqjKBMJT99n1lh9L8rdQlUAxSafzFmH8dwAD2Fa9R1zkWYnLZYCCabbjWsXNae6+arx5v2VMB4hrFZVxgh8O/vmPGE2IAsx9SEx9mk8sE+opbWDH3Z5KLoFi4laQz7chCPxg+DmDIqcTTUAgzq6mAFdBZK2gBoBed97kFxD/1Y0YVEmB6RCHBVtQcoJNtmNN5QbIGmnU4SPxNmanmAi1o0kUd73wlvMaa8TfeWrWvMkTNIqg6dwtmhOtRwKyy4DhvZL51iFwdZRygDXuhoZKr7e9MGN1CPht30v/WAP8UsagoO73rFb6HQ==
-      eksae2e@email.com
-
----
-apiVersion: anywhere.eks.amazonaws.com/v1alpha1
-kind: CloudStackMachineConfig
-metadata:
-  annotations:
-    anywhere.eks.amazonaws.com/etcd: "true"
-  name: main-i-06b7e-65178ca-etcd
-  namespace: default
-spec:
-  computeOffering:
-    name: Large Instance
-  template:
-    name: kubernetes-1-25-eks-35-redhat-9
+    name: kubernetes-1-26-eks-31-redhat-9
   users:
   - name: capc
     sshAuthorizedKeys:
